@@ -35,7 +35,7 @@ const Navbar = () => {
         </Link>
       </button>
       <button onClick={() => setSelected('profile')}>
-        <Link href='/'>
+        <Link href='/profile'>
           <FaRegUser className={`size-5 ${selected === 'profile' ? 'text-blue-700 fill-blue-700' : ''}`} />
         </Link>
       </button>
