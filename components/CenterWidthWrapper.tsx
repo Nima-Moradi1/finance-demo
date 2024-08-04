@@ -10,10 +10,10 @@ const CenterWidthWrapper = ({
 }) => {
   return (
     <div
-      className={cn(
-        ' min-h-screen flex items-center justify-center mx-auto w-full max-w-screen-lg px-2.5 py-2.5 md:px-20',
-        className
-      )}>
+    className={cn(
+      ' min-h-screen p-2.5 flex items-center justify-center max-w-screen-lg md:px-20 ',
+      className
+    )}>
         {children}
       
     </div>
