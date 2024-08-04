@@ -25,8 +25,8 @@ export default  function Home() {
       </div>
     </div>
     {/* balance area */}
-    <div className="py-5 mt-4">
-      <p className="text-center text-xl">Total Balance</p>
+    <div className="py-5 mt-1">
+      <p className="text-center text-2xl">Total Balance</p>
     <p className="text-center font-extrabold text-4xl mt-5">$0</p></div>
     <CardFetchComponent/>
     {/* transactions */}

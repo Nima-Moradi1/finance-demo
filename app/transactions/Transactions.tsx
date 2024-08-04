@@ -60,10 +60,10 @@ const Transactions = () => {
     if (error) 
       return(
         <MaxWidthWrapper>
-        <div className='flex flex-col gap-3 items-center justify-center w-full h-[40dvh]'>
+        <div className='flex flex-col gap-3 items-center justify-center w-full h-[30dvh]'>
             <p className='font-bold text-lg'>There are nothing</p>
             <p className='text-sm text-neutral-500'>Your recent transactions are shown here</p>
-            <p className='text-5xl border-2 border-blue-600 rounded-full p-5 px-9 text-blue-600'>!</p>
+            <p className='text-4xl border-2 border-blue-600 rounded-full py-1 px-5 text-blue-600'>!</p>
         </div>
     </MaxWidthWrapper>
       );

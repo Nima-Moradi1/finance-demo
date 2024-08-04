@@ -43,7 +43,7 @@ const Services = () => {
   return (
     <>
      <MaxWidthWrapper>
-      <div className='flex flex-col gap-6 mt-5'>
+      <div className='flex flex-col gap-4 mb-20'>
         <p className='font-bold text-center text-lg'>Choose one of the services</p>
         {/* box 1 */}
         <div onClick={handleOpenCamera} className='bg-black flex w-full justify-between  pl-5 py-5 rounded-3xl'>

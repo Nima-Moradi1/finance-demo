@@ -23,24 +23,24 @@ const Navbar = () => {
   }, [selected]);
 
   return (
-    <div className='bottom-0 fixed w-full py-5 px-10 flex items-center justify-between shadow-2xl rounded-t-lg shadow-black'>
-      <button onClick={() => setSelected('home')}>
-        <Link href='/'>
-          <GrHomeRounded className={`size-5 ${selected === 'home' ? 'text-blue-700 fill-blue-200' : ''}`} />
-        </Link>
-      </button>
-      <button onClick={() => setSelected('transactions')}>
-        <Link href='/transactions'>
-          <VscArrowSwap className={`size-5 ${selected === 'transactions' ? 'text-blue-700 fill-blue-700' : ''}`} />
-        </Link>
-      </button>
-      <button onClick={() => setSelected('profile')}>
-        <Link href='/profile'>
-          <FaRegUser className={`size-5 ${selected === 'profile' ? 'text-blue-700 fill-blue-700' : ''}`} />
-        </Link>
-      </button>
-    </div>
-  );
+    <nav className='fixed bottom-0 z-[9999] w-full py-5 px-10 flex items-center justify-between shadow-2xl rounded-t-lg shadow-black bg-white'>
+    <button onClick={() => setSelected('home')}>
+      <Link href='/'>
+        <GrHomeRounded className={`size-5 ${selected === 'home' ? 'text-blue-700 fill-blue-200' : ''}`} />
+      </Link>
+    </button>
+    <button onClick={() => setSelected('transactions')}>
+      <Link href='/transactions'>
+        <VscArrowSwap className={`size-5 ${selected === 'transactions' ? 'text-blue-700 fill-blue-700' : ''}`} />
+      </Link>
+    </button>
+    <button onClick={() => setSelected('profile')}>
+      <Link href='/profile'>
+        <FaRegUser className={`size-5 ${selected === 'profile' ? 'text-blue-700 fill-blue-700' : ''}`} />
+      </Link>
+    </button>
+  </nav>
+);
 };
 
 export default Navbar;
