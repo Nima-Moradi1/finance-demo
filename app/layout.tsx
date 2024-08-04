@@ -4,6 +4,7 @@ import "./globals.css";
 import MaxWidthWrapper from "@/components/MaxWidthWrapper";
 import { Recursive } from 'next/font/google'
 import { Toaster } from "react-hot-toast";
+import Navbar from "@/components/Navbar";
 
 const recursive = Recursive({ subsets: ['latin'] })
 
@@ -20,11 +21,8 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${recursive.className} bg-slate-50`}>
-        <MaxWidthWrapper>
-          {children}
           <Toaster/>  
-        </MaxWidthWrapper>
-        
+          {children}
         </body>
     </html>
   );

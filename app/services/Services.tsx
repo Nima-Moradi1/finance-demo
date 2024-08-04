@@ -1,5 +1,7 @@
 'use client'
 
+import MaxWidthWrapper from '@/components/MaxWidthWrapper';
+import Navbar from '@/components/Navbar';
 import React, { useCallback } from 'react'
 
 
@@ -39,7 +41,9 @@ const Services = () => {
 
 
   return (
-    <div className='flex flex-col gap-6 mt-5'>
+    <>
+     <MaxWidthWrapper>
+      <div className='flex flex-col gap-6 mt-5'>
         <p className='font-bold text-center text-lg'>Choose one of the services</p>
         {/* box 1 */}
         <div onClick={handleOpenCamera} className='bg-black flex w-full justify-between  pl-5 py-5 rounded-3xl'>
@@ -82,6 +86,10 @@ const Services = () => {
             </div>
         </div>
     </div>
+    </MaxWidthWrapper>
+    <Navbar /></>
+   
+    
   )
 }
 

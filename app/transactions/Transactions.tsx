@@ -1,5 +1,6 @@
 'use client'
 
+import MaxWidthWrapper from '@/components/MaxWidthWrapper';
 import Link from 'next/link'
 import React, { useEffect, useState } from 'react'
 import { MdOutlineAddCard } from 'react-icons/md';
@@ -58,14 +59,13 @@ const Transactions = () => {
   
     if (error) 
       return(
-        <div>
-        
+        <MaxWidthWrapper>
         <div className='flex flex-col gap-3 items-center justify-center w-full h-[40dvh]'>
             <p className='font-bold text-lg'>There are nothing</p>
             <p className='text-sm text-neutral-500'>Your recent transactions are shown here</p>
             <p className='text-5xl border-2 border-blue-600 rounded-full p-5 px-9 text-blue-600'>!</p>
         </div>
-    </div>
+    </MaxWidthWrapper>
       );
 
 

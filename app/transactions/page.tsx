@@ -11,6 +11,8 @@ import {
 } from "@/components/ui/dropdown-menu"
 import TransactionsComponent from "./Transactions"
 import { FaChevronDown } from "react-icons/fa";
+import MaxWidthWrapper from "@/components/MaxWidthWrapper"
+import Navbar from "@/components/Navbar"
 
 
 const Transactions = () => {
@@ -23,7 +25,7 @@ const Transactions = () => {
 
   return (
     <>
-   <div className="my-6">
+    <div className="my-6">
    <DropdownMenu>
       <DropdownMenuTrigger asChild>
         <div className="flex items-center justify-center p-2 gap-5 mx-auto">
@@ -64,6 +66,7 @@ const Transactions = () => {
     </DropdownMenu>
    </div>
     <TransactionsComponent/>
+    <Navbar />
     </>
   )
 }

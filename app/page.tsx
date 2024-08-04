@@ -1,7 +1,7 @@
 'use client'
 
 import Navbar from "@/components/Navbar";
-import MaxWidthWrapper from "../components/CenterWidthWrapper";
+import MaxWidthWrapper from "../components/MaxWidthWrapper";
 import { IoNotificationsOutline } from "react-icons/io5";
 import CardFetch from "@/components/CardFetch";
 import CardFetchComponent from "@/components/CardFetch";
@@ -14,8 +14,9 @@ export default  function Home() {
   
   return (
     <>
-        {/* header */}
-    <div className="flex items-center mt-5 justify-between w-full flex-row-reverse top-0">
+    <MaxWidthWrapper>
+      <div>{/* header */}
+      <div className="flex items-center justify-between w-full flex-row-reverse top-0">
       <div><IoNotificationsOutline className="size-7"/></div>
       <div className="flex gap-3">
         <img src="/user-1.png" alt="user" className="rounded-full size-12"/>
@@ -36,6 +37,12 @@ export default  function Home() {
             >View all</Link>
         </div>
     <Transactions />
+      </div>
+       
+   
+    </MaxWidthWrapper>
+       
+    <Navbar />
        </>
   );
 }
