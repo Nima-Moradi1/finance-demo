@@ -37,32 +37,41 @@ export default  function Home() {
       }
     }
     
-    useEffect(()=> {
-      const handleBeforeInstallPrompt = ( event : any) => {
-        event.preventDefault()
-        setPrompt(event)
-        if(!window.matchMedia("(display-mode: standalone)").matches) {
-          setShowInstallModal(true);
-        }
-      }
-      window.addEventListener('beforeinstallprompt',handleBeforeInstallPrompt)
-    
-      //cleanup functions
+    useEffect(() => {
+      const handleBeforeInstallPrompt = (event : any) => {
+          event.preventDefault();
+          setPrompt(event);
+          
+          const today = new Date().toLocaleDateString(); // Get today's date
+
+          // Check if we have a stored date in localStorage
+          const storedDate = localStorage.getItem('installPromptDate');
+
+          // If there's no stored date or it's not today, show the modal
+          if (!storedDate || storedDate !== today) {
+              setShowInstallModal(true);
+              localStorage.setItem('installPromptDate', today); // Store today's date
+          }
+      };
+
+      window.addEventListener('beforeinstallprompt', handleBeforeInstallPrompt);
+
+      // Cleanup function
       return () => {
-        window.removeEventListener('beforeinstallprompt',handleBeforeInstallPrompt)
-      }
-    },[])
+          window.removeEventListener('beforeinstallprompt', handleBeforeInstallPrompt);
+      };
+  }, []);
   
   return (
     <>
     <MaxWidthWrapper>
       <div>{/* header */}
       <div className="flex items-center justify-between w-full flex-row-reverse top-0">
-      <div><IoNotificationsOutline className="size-7"/></div>
+      <div><img alt="notification" src="/notification-bing.svg"/></div>
       <div className="flex gap-3">
         <img src="/user-1.png" alt="user" className="rounded-full size-12"/>
         <div> <span className="text-sm text-zinc-500">Hello User !</span>
-        <p>Welcome back!</p></div>
+        <p className="font-bold">Welcome back!</p></div>
       </div>
     </div>
     {/* balance area */}
