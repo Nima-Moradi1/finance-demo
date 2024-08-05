@@ -3,46 +3,34 @@
 import MaxWidthWrapper from '@/components/MaxWidthWrapper';
 import Link from 'next/link'
 import React, { useEffect, useState } from 'react'
-import { MdOutlineAddCard } from 'react-icons/md';
+import { fetchTransactions } from '../__api';
+import { useQuery } from '@tanstack/react-query';
 
 
-
+type Transaction = {
+  amount : number ,
+  description : string ,
+  id : number ,
+  merchantId : string ,
+  transactionDate : string
+}
 
 const Transactions = () => {
 
-    const [transactions, setTransactions] = useState(null);
-    const [loading, setLoading] = useState(true);
-    const [error, setError] = useState<string | null>(null);
+  //a function to format the date from the api 
+  const formatDate = (isoDateString: string): string => {
+    const date = new Date(isoDateString);
+    return date.toLocaleDateString();
+  };
+
+  const transactions = useQuery({
+    queryKey : ['transactions'] ,
+    queryFn : async () => await fetchTransactions() ,
+    retry:0
+  })
+  const {isLoading , error , data} = transactions
   
-    useEffect(() => {
-      const fetchTransactions = async () => {
-        const token = localStorage.getItem('token');
-        try {
-          const response = await fetch('http://demo.arcaneageis.com/api/get-transactions', {
-            method: 'GET',
-            headers: {
-              'Authorization': `Bearer ${token}`
-            }
-          });
-  
-          if (response.status === 200 || response.status === 201) {
-            const data = await response.json();
-            setTransactions(data);
-            console.log(data)
-          } else {
-            setError('Failed to fetch card');
-          }
-        } catch (err : any) {
-          setError(err.message);
-        } finally {
-          setLoading(false);
-        }
-      };
-  
-      fetchTransactions();
-    }, []);
-  
-    if (loading) return (
+    if (isLoading) return (
       <div className="flex flex-col bg-slate-100 py-10 my-5 gap-3 items-center w-full justify-center mx-auto">
     <img
         src="/loader.svg"
@@ -54,8 +42,6 @@ const Transactions = () => {
     <p>Loading Transactions...</p>
   </div>
     )
-    
-  
   
     if (error) 
       return(
@@ -63,22 +49,40 @@ const Transactions = () => {
         <div className='flex flex-col gap-3 items-center justify-center w-full h-[30dvh]'>
             <p className='font-bold text-lg'>There are nothing</p>
             <p className='text-sm text-neutral-500'>Your recent transactions are shown here</p>
-            <p className='text-4xl border-2 border-blue-600 rounded-full py-1 px-5 text-blue-600'>!</p>
+            <p className='text-3xl font-light border-2 border-blue-600 rounded-full py-2 px-5 text-blue-600'>!</p>
         </div>
     </MaxWidthWrapper>
       );
-
-
+console.log('data from transactions page' , data)
+if(data) {
   return (
-    <div className='mt-10'>
-        <div className='flex justify-between items-center mx-3 px-3 text-sm'>
-            <p className='font-bold'>Recent Activity</p>
-            <Link href='/transactions'
-            className='text-blue-600'
-            >View all</Link>
-        </div>
-    </div>
+    <div className='mt-4 mb-20 md:mb-5 flex flex-col w-full items-center justify-center px-2 gap-5'>
+    {data.map((trx : Transaction)=> {
+      return (
+          <div key={trx.id}  className='bg-red-50 rounded-2xl p-5 px-8 w-full'>
+       <div className='flex items-center justify-between w-full'>
+         <div className='flex flex-col items-start justify-start gap-1'>
+           <h2 className='font-bold text-base text-black'>
+             {trx.description}
+           </h2>
+           <h4 className='text-sm text-zinc-500'>
+             {formatDate(trx.transactionDate)}
+           </h4>
+         </div>
+         <div>
+           <p
+           className={`${trx.amount >= 0 ? "text-green-600" : "text-red-600"} font-bold text-lg `}
+           > {trx.amount >=0 ? <span>+</span> : null}
+             ${trx.amount}</p>
+         </div>
+       </div>
+     </div>
+     
+     )
+    })}
+ </div>
   )
+}
 }
 
 export default Transactions
