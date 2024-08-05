@@ -1,13 +1,9 @@
 'use client'
 
 import MaxWidthWrapper from '@/components/MaxWidthWrapper';
-import Link from 'next/link'
 import React from 'react'
 import { fetchTransactions, Transaction } from '../__api';
 import { useQuery } from '@tanstack/react-query';
-
-
-
 
 const Transactions = () => {
 
@@ -49,7 +45,7 @@ const Transactions = () => {
       );
 if(data) {
   return (
-    <div className='mt-4 mb-20 md:mb-5 flex flex-col w-full items-center justify-center px-2 gap-5'>
+    <div className='mt-4 mb-20 flex flex-col w-full items-center justify-center px-2 gap-5'>
     {data?.map((trx : Transaction)=> {
       return (
           <div key={trx.id}  className='bg-red-50 rounded-2xl p-5 px-8 w-full'>

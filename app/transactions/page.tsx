@@ -65,7 +65,10 @@ const Transactions = () => {
       </DropdownMenuContent>
     </DropdownMenu>
    </div>
-    <TransactionsComponent/>
+   <MaxWidthWrapper>
+   <TransactionsComponent/>
+   </MaxWidthWrapper>
+    
     <Navbar />
     </>
   )
