@@ -25,19 +25,22 @@ const Navbar = () => {
   return (
     <div className=' mx-auto w-full max-w-screen-md z-50'>
         <nav className='fixed bottom-0 max-w-screen-md w-full py-5 px-10 flex items-center justify-between shadow-2xl rounded-t-xl shadow-black bg-slate-50'>
-    <button onClick={() => setSelected('home')}>
+    <button onClick={() => setSelected('home')}
+       className={`nav-item ${selected === 'home' ? 'selected' : ''}`}>
       <Link href='/'>
-        <GrHomeRounded className={`size-5 ${selected === 'home' ? 'text-blue-700 fill-blue-200' : ''}`} />
+        <img src='/home.svg' alt='home'  />
       </Link>
     </button>
-    <button onClick={() => setSelected('transactions')}>
-      <Link href='/transactions'>
-        <VscArrowSwap className={`size-5 ${selected === 'transactions' ? 'text-blue-700 fill-blue-700' : ''}`} />
+    <button onClick={() => setSelected('services')}
+       className={`nav-item ${selected === 'services' ? 'selected' : ''}`}>
+      <Link href='/services'>
+        <img src='/arrow.svg' alt='trx'  />
       </Link>
     </button>
-    <button onClick={() => setSelected('profile')}>
+    <button onClick={() => setSelected('profile')}
+       className={`nav-item ${selected === 'profile' ? 'selected' : ''}`}>
       <Link href='/profile'>
-        <FaRegUser className={`size-5 ${selected === 'profile' ? 'text-blue-700 fill-blue-700' : ''}`} />
+        <img alt='profile' src='/profile.svg'  />
       </Link>
     </button>
   </nav>
