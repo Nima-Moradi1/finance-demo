@@ -7,10 +7,51 @@ import CardFetch from "@/components/CardFetch";
 import CardFetchComponent from "@/components/CardFetch";
 import Transactions from "./transactions/Transactions";
 import Link from "next/link";
+import PWAModal from "@/components/PWAModal";
+import { useEffect, useState } from "react";
 
 
 export default  function Home() {
-  //getting card details api
+  
+    //states for pwa modal handling 
+    const [showInstallModal,setShowInstallModal] = useState<boolean>(false)
+    const [prompt,setPrompt] = useState<any>(null)
+      // from here is the pwa modal functions
+    const handleCloseModal = () => {
+      setShowInstallModal(false)
+    }
+    // install click
+    const handleInstallClick = () => {
+      if(prompt){
+        prompt.prompt()
+    
+        prompt.userChoice.then((choiceResult : any)=> {
+          if(choiceResult.outcome === 'accepted') {
+            console.log("Accepted Pwa installation by user")
+          } else {
+            console.log("rejected !")
+          }
+          setPrompt(null)
+          setShowInstallModal(false)
+        })
+      }
+    }
+    
+    useEffect(()=> {
+      const handleBeforeInstallPrompt = ( event : any) => {
+        event.preventDefault()
+        setPrompt(event)
+        if(!window.matchMedia("(display-mode: standalone)").matches) {
+          setShowInstallModal(true);
+        }
+      }
+      window.addEventListener('beforeinstallprompt',handleBeforeInstallPrompt)
+    
+      //cleanup functions
+      return () => {
+        window.removeEventListener('beforeinstallprompt',handleBeforeInstallPrompt)
+      }
+    },[])
   
   return (
     <>
@@ -39,7 +80,7 @@ export default  function Home() {
     <Transactions />
       </div>
        
-   
+      <PWAModal show={showInstallModal} onClose={handleCloseModal} onInstall={handleInstallClick}/>
     </MaxWidthWrapper>
        
     <Navbar />
