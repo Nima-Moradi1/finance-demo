@@ -1,9 +1,15 @@
+//این فایل فعلا جایی استفاده نشده به غیر از بیس یوار ال ...
+// بعدا میتونیم جهت بست پرکتیس اینجا رو اپدیت کنیم و ریوزبل کنیم
+// و از اینجا کل دیتاها رو کال کنیم که در یک فایل قابل دسترس و تعمیر باشه
+
+
+
 import { CardValidation, KycValidation, SigninValidation, SignupValidation } from "@/lib/validation";
-import { redirect } from "next/navigation";
+import { redirect, useRouter } from "next/navigation";
 import toast from "react-hot-toast";
 import { z } from "zod";
 
-const BASE_URL = 'https://demo.arcaneageis.com'
+export const BASE_URL = 'https://demo.arcaneageis.com'
     // login 
    export const handleLogin = async (data: z.infer<typeof SigninValidation>) => {
         try {
@@ -25,7 +31,7 @@ const BASE_URL = 'https://demo.arcaneageis.com'
                 const data = await response.json()
                 const token = data.token ;
                 localStorage.setItem('token' , token)
-                redirect('/kyc')
+               redirect('/kyc')
                 
             } else {
                 const errorData = await response.json();
@@ -190,9 +196,10 @@ const BASE_URL = 'https://demo.arcaneageis.com'
 
       if (response.status === 200 || response.status === 201) {
         const data = await response.json();
+        console.log(data)
         return data
       } else {
-        toast.error('Failed to fetch card');
+        toast.error('Failed to fetch transactions');
       }
     } catch (err : any) {
       toast.error(err.message);
