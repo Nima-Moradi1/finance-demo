@@ -101,7 +101,7 @@ const KycForm = () => {
     <CenterWidthWrapper>
         
          <Form {...form}>
-      <div className="sm:w-420 flex-center flex-col">
+      <div className=" flex-center flex-col">
         <h2 className="font-bold text-xl text-center tracking-wider ">
         Enter your contact
         <br/>Information
@@ -110,7 +110,7 @@ const KycForm = () => {
 
         <form
           onSubmit={form.handleSubmit(handleKyc)}
-          className="flex flex-col gap-5 w-full mt-5">
+          className="flex flex-col gap-2 w-full mt-5">
            <FormField
             control={form.control}
             name="passport_number"
@@ -215,7 +215,7 @@ const KycForm = () => {
           isLoading={isSubmitting}
           disabled={isSubmitting || !passportImagePreview || !idImagePreview}
           loadingText='Please Wait'
-          type="submit" className="">
+          type="submit" className="mt-5">
               Next
           </Button>
 

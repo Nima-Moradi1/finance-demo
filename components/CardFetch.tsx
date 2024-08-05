@@ -62,9 +62,9 @@ const CardFetchComponent: React.FC = () => {
   if (card?.card_number === '' || card?.first_name == '' || error) 
     return(
   <>
-     <Link href='/add-card' className='bg-neutral-300 flex flex-col items-center justify-center gap-5 text-black p-6 w-full rounded-3xl text-center'>
+     <Link href='/add-card' className='bg-[#B1B1B1] flex flex-col items-center justify-center gap-5 text-black p-6 w-full rounded-3xl text-center'>
     <p className='text-xl '>Add new card</p>
-    <MdOutlineAddCard className='size-20 text-neutral-700 rotate-180'/>
+    <img alt='card' src='card-add.svg'/>
     </Link>
     <Link href='/services' className='flex flex-col gap-2 -mt-16 ml-5 opacity-80'>         
     <FaPlus className="text-black border-2 border-black rounded-lg p-1 size-7 ml-1" />

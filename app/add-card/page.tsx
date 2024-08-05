@@ -43,7 +43,7 @@ const Card = () => {
       const { isValid } = useFormState({ control });
       //router 
       const router = useRouter()
-    //handling the login 
+    //adding card handler 
     const handleCardAdd = async (data: z.infer<typeof CardValidation>) => {
       try {
         const token = localStorage.getItem('token')

@@ -29,10 +29,10 @@ const Transactions = () => {
    <DropdownMenu>
       <DropdownMenuTrigger asChild>
         <div className="flex items-center justify-center p-2 gap-5 mx-auto">
-          <Button variant="outline" className="w-36 bg-red-50">
+          <Button variant="outline" className="w-40 bg-red-50">
             {selectedItem}
           </Button>
-          <FaChevronDown className="size-5 -ml-7 pr-2" />
+          <FaChevronDown className="size-5 -ml-12" />
         </div>
       </DropdownMenuTrigger>
       <DropdownMenuContent className="w-56">

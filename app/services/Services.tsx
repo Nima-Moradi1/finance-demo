@@ -1,5 +1,6 @@
 'use client'
 
+import CenterWidthWrapper from '@/components/CenterWidthWrapper';
 import MaxWidthWrapper from '@/components/MaxWidthWrapper';
 import Navbar from '@/components/Navbar';
 import React, { useCallback } from 'react'
@@ -42,11 +43,12 @@ const Services = () => {
 
   return (
     <>
-     <MaxWidthWrapper>
+
+      <MaxWidthWrapper>
       <div className='flex flex-col gap-4 mb-20'>
         <p className='font-bold text-center text-lg'>Choose one of the services</p>
         {/* box 1 */}
-        <div onClick={handleOpenCamera} className='bg-black flex w-full justify-between  pl-5 py-5 rounded-3xl'>
+        <div onClick={handleOpenCamera} className='bg-black flex w-full justify-between  pl-5 pt-5 overflow-hidden rounded-3xl'>
             <div className='text-white'>
                 <h2 className='font-bold text-xl px-1'>Desposit money</h2>
                 <h4 className='text-xs text-neutral-400'>deposit money to your account easily</h4>
@@ -59,11 +61,11 @@ const Services = () => {
         <div onClick={handleOpenCamera} className='bg-purple-600 relative flex w-full justify-between  pl-5 py-5 overflow-hidden rounded-3xl'>
             <div className='text-white'>
                 <h2 className='font-bold text-xl px-1'>Desposit money <br/> and get card</h2>
-                <h4 className='text-xs text-neutral-400'>deposit money to your account easily and get card</h4>
+                <h4 className='text-xs text-neutral-400 mr-1'>deposit money to your account easily and get card</h4>
             </div>
             <div className='w-72 overflow-hidden '>
-                <img alt='money' src='/blackmoney-t.png' className=' absolute w-44 z-50 '/>
-                <img alt='whitecard' src='/whitecard.png' className='absolute w-60 -right-2 top-1'/>
+                <img alt='money' src='/blackmoney-t.png' className=' absolute w-44 z-50 right-0'/>
+                <img alt='whitecard' src='/whitecard.png' className='absolute w-60 -right-6 top-1'/>
             </div>
         </div>
         {/* box 3 */}
@@ -86,7 +88,7 @@ const Services = () => {
             </div>
         </div>
     </div>
-    </MaxWidthWrapper>
+      </MaxWidthWrapper>
     <Navbar /></>
    
     

@@ -6,7 +6,7 @@ import { cn } from "@/lib/utils"
 import Loader from "../Loader"
 
 const buttonVariants = cva(
-  "inline-flex items-center justify-center whitespace-nowrap rounded-xl text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50",
+  "inline-flex items-center justify-center  whitespace-nowrap rounded-xl text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50",
   {
     variants: {
       variant: {
@@ -65,7 +65,10 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
         {isLoading ? (
           <span className="flex items-center justify-center gap-4">
             <p>{loadingText}</p>
-             <p><Loader/></p>
+            <div className="size-6">
+            <img alt="" src="loader.svg"/>
+            </div>
+             
           </span>
          
         ) : children}
