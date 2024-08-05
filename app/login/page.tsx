@@ -18,16 +18,14 @@ import { SigninValidation } from '@/lib/validation'
 import { Input } from '@/components/ui/input'
 import CenterWidthWrapper from '@/components/CenterWidthWrapper';
 import Link from 'next/link'
-import toast from 'react-hot-toast'
 import { useRouter } from 'next/navigation'
-
+import toast from 'react-hot-toast'
+import { BASE_URL } from '../__api'
 
 
 
 const LoginForm = () => {
-// button configuration for form 
-
-
+  const router = useRouter()
 // form
     const form = useForm<z.infer<typeof SigninValidation>>({
         resolver: zodResolver(SigninValidation),
@@ -40,41 +38,39 @@ const LoginForm = () => {
       
       const {formState:{isSubmitting},control} = form
       const { isValid } = useFormState({ control });
-      //router 
-      const router = useRouter()
-    //handling the login 
-    const handleLogin = async (data: z.infer<typeof SigninValidation>) => {
-      try {
-          const formData = new FormData();
-          formData.append("phone_number", data.phone_number || '');
-          formData.append("password", data.password);
-
-          const response = await fetch('https://demo.arcaneageis.com/login', {
-              method: 'POST',
-              headers: {
-                  'Content-Type': 'application/json',
-              },
-              body: JSON.stringify(formData),
-          });
-
-         
-          if (response.status === 200 || response.status === 201) {
-              toast.success('Logged in!');
-              router.push('/kyc');
-              const data = await response.json()
-              const token = data.token ;
-              localStorage.setItem('token' , token)
-              
-          } else {
-              const errorData = await response.json();
-              toast.error(`Login failed: ${errorData.message}`);
-          }
-      } catch (error) {
-          console.error('Error during login:', error);
-          toast.error('Error during login. Please try again.');
-      }
-  }
-
+      
+      const handleLogin = async (data: z.infer<typeof SigninValidation>) => {
+    
+            try {
+                const formData = new FormData();
+                formData.append("phone_number", data.phone_number || '');
+                formData.append("password", data.password);
+      
+                const response = await fetch(`${BASE_URL}/login`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(formData),
+                });
+      
+               
+                if (response.status === 200 || response.status === 201) {
+                    toast.success('Logged in!');
+                    const data = await response.json()
+                    const token = data.token ;
+                    localStorage.setItem('token' , token)
+                    router.push('/kyc')
+                    
+                } else {
+                    const errorData = await response.json();
+                    toast.error(`Login failed: ${errorData.message}`);
+                }
+            } catch (error) {
+                console.error('Error during login:', error);
+                toast.error('Error during login. Please try again.');
+            }
+        }
 
 
   return (
