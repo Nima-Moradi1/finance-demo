@@ -17,14 +17,13 @@ import {
 import { SignupValidation } from '@/lib/validation'
 import { Input } from '@/components/ui/input'
 import CenterWidthWrapper from '@/components/CenterWidthWrapper';
+import { BASE_URL, handleSignup } from '../__api'
 import { useRouter } from 'next/navigation'
 
 
 
-
 const SignupForm = () => {
-  const router = useRouter();
-
+  const router = useRouter()
 // form
     const form = useForm<z.infer<typeof SignupValidation>>({
         resolver: zodResolver(SignupValidation),
@@ -40,30 +39,27 @@ const SignupForm = () => {
       
       const {formState:{isSubmitting},control} = form
       const { isValid } = useFormState({ control });
-    //handling the submission 
-    const handleSignup = async (data: z.infer<typeof SignupValidation>) => {
-      try {
-          const formData = new FormData();
-          formData.append("first_name", data.first_name);
-          formData.append("last_name", data.last_name);
-          formData.append("phone_number", data.phone_number || '');
-          formData.append("password", data.password);
+//handle signup logic
+const handleSignup = async (data: z.infer<typeof SignupValidation>) => {
+  try {
+      const formData = new FormData();
+      formData.append("first_name", data.first_name);
+      formData.append("last_name", data.last_name);
+      formData.append("phone_number", data.phone_number || '');
+      formData.append("password", data.password);
 
-          const response = await fetch('https://demo.arcaneageis.com/register', {
-              method: 'POST',
-              body: JSON.stringify(formData)
-          });
-          if(response.status == 201 || 200) {
-            toast.success('Account Created !')
-            router.push('/login')
-          }
-      } catch (error) {
-          console.error('Error during registration:', error);
+      const response = await fetch(`${BASE_URL}/register`, {
+          method: 'POST',
+          body: JSON.stringify(formData)
+      });
+      if(response.status == 201 || 200) {
+        toast.success('Account Created !')
+       router.push('/login')
       }
+  } catch (error) {
+      console.error('Error during registration:', error);
   }
-
-
-
+}
 
 
   return (
@@ -71,7 +67,7 @@ const SignupForm = () => {
     <CenterWidthWrapper>
         
          <Form {...form}>
-      <div className="sm:w-420 flex-center flex-col">
+      <div className=" flex-center flex-col">
         <h2 className="font-bold text-3xl text-center ">
           Get Started!
         </h2>
@@ -82,7 +78,7 @@ const SignupForm = () => {
 
         <form
           onSubmit={form.handleSubmit(handleSignup)}
-          className="flex flex-col gap-5 w-full mt-5">
+          className="flex flex-col gap-2 w-full mt-5">
            <FormField
             control={form.control}
             name="phone_number"
@@ -171,7 +167,8 @@ const SignupForm = () => {
           isLoading={isSubmitting}
           disabled={isSubmitting || !isValid}
           loadingText='Please Wait'
-          type="submit" className="">
+          type="submit" 
+          className=''>
               Next
           </Button>
 
