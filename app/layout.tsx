@@ -1,18 +1,15 @@
-import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import type { Metadata, Viewport } from "next";
 import "./globals.css";
-import MaxWidthWrapper from "@/components/MaxWidthWrapper";
 import { Recursive } from 'next/font/google'
 import { Toaster } from "react-hot-toast";
-import Navbar from "@/components/Navbar";
+import { constructMetadata } from "@/lib/utils";
 
 const recursive = Recursive({ subsets: ['latin'] })
 
-export const metadata: Metadata = {
-  title: "Finance Demo",
-  description: "Just a Demo for presentation!",
-};
-
+export const metadata: Metadata = constructMetadata
+export const viewport : Viewport = {
+  themeColor: 'FFFFFF'
+}
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -20,7 +17,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${recursive.className} bg-slate-50`}>
+      <body className={`${recursive.className} bg-slate-50 scroll-smooth `}>
           <Toaster/>  
           {children}
         </body>
