@@ -1,6 +1,6 @@
 //این فایل فعلا جایی استفاده نشده به غیر از بیس یوار ال ...
 // بعدا میتونیم جهت بست پرکتیس اینجا رو اپدیت کنیم و ریوزبل کنیم
-// و از اینجا کل دیتاها رو کال کنیم که در یک فایل قابل دسترس و تعمیر باشه
+// و از اینجا کل دیتاها رو کال کنیم که در یک فایل قابل دسترس و تعمیر
 
 
 
@@ -159,6 +159,11 @@ export const BASE_URL = 'https://demo.arcaneageis.com'
     };
 
     //getting balance
+
+type Balance = {
+  balance : string
+}
+
     export const fetchBalance = async () => {
         const token = localStorage.getItem('token');
         try {
@@ -170,20 +175,25 @@ export const BASE_URL = 'https://demo.arcaneageis.com'
           });
   
           if (response.status === 200 || response.status === 201) {
-            const data = await response.json();
-            console.log(data)
+            const data : Balance = await response.json();
+            return data
           } else {
             toast.error('Failed to fetch balance');
           }
         } catch (err : any) {
           toast.error(err.message);
         } 
-        // finally {
-        //   setLoading(false);
-        // }
     };
 
     //fetching transactions
+
+export type Transaction = {
+  amount : number ,
+  description : string ,
+  id : number ,
+  merchantId : string ,
+  transactionDate : string
+}
    export const fetchTransactions = async () => {
     const token = localStorage.getItem('token');
     try {
@@ -195,8 +205,7 @@ export const BASE_URL = 'https://demo.arcaneageis.com'
       });
 
       if (response.status === 200 || response.status === 201) {
-        const data = await response.json();
-        console.log(data)
+        const data : Transaction[] = await response.json();
         return data
       } else {
         toast.error('Failed to fetch transactions');

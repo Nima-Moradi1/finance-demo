@@ -2,18 +2,12 @@
 
 import MaxWidthWrapper from '@/components/MaxWidthWrapper';
 import Link from 'next/link'
-import React, { useEffect, useState } from 'react'
-import { fetchTransactions } from '../__api';
+import React from 'react'
+import { fetchTransactions, Transaction } from '../__api';
 import { useQuery } from '@tanstack/react-query';
 
 
-type Transaction = {
-  amount : number ,
-  description : string ,
-  id : number ,
-  merchantId : string ,
-  transactionDate : string
-}
+
 
 const Transactions = () => {
 
@@ -53,11 +47,10 @@ const Transactions = () => {
         </div>
     </MaxWidthWrapper>
       );
-console.log('data from transactions page' , data)
 if(data) {
   return (
     <div className='mt-4 mb-20 md:mb-5 flex flex-col w-full items-center justify-center px-2 gap-5'>
-    {data.map((trx : Transaction)=> {
+    {data?.map((trx : Transaction)=> {
       return (
           <div key={trx.id}  className='bg-red-50 rounded-2xl p-5 px-8 w-full'>
        <div className='flex items-center justify-between w-full'>

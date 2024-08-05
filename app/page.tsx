@@ -9,6 +9,8 @@ import Transactions from "./transactions/Transactions";
 import Link from "next/link";
 import PWAModal from "@/components/PWAModal";
 import { useEffect, useState } from "react";
+import { fetchBalance } from "./__api";
+import { useQuery } from "@tanstack/react-query";
 
 
 export default  function Home() {
@@ -61,6 +63,16 @@ export default  function Home() {
           window.removeEventListener('beforeinstallprompt', handleBeforeInstallPrompt);
       };
   }, []);
+  //get balance
+  const transactions = useQuery({
+    queryKey : ['balance'] ,
+    queryFn : async () => await fetchBalance() ,
+    retry:0
+  })
+  const {isLoading , error , data} = transactions
+
+  const numBalance = Number(data?.balance)
+  const formattedBalance = numBalance.toLocaleString()
   
   return (
     <>
@@ -71,17 +83,23 @@ export default  function Home() {
       <div className="flex gap-3">
         <img src="/user-1.png" alt="user" className="rounded-full size-12"/>
         <div> <span className="text-sm text-zinc-500">Hello User !</span>
-        <p className="font-bold">Welcome back!</p></div>
+        <h3 className="font-bold">Welcome back!</h3></div>
       </div>
     </div>
     {/* balance area */}
     <div className="py-5 mt-1">
-      <p className="text-center text-2xl">Total Balance</p>
-    <p className="text-center font-extrabold text-4xl mt-5">$0</p></div>
+      <div className="text-center text-2xl">Total Balance</div>
+    <div className="text-center font-extrabold text-4xl mt-5">
+      {isLoading ?  <div className="flex flex-col gap-3 items-center w-full justify-center mx-auto">
+  <img src="/loader.svg" alt="loader" width={24} height={24} className="animate-spin" /></div>
+       : error ? <><span>!</span></> 
+       : data ? <>${formattedBalance}</> 
+       : null}
+      </div></div>
     <CardFetchComponent/>
     {/* transactions */}
     <div className='flex justify-between items-center mx-3 px-3 text-sm mt-10'>
-            <p className='font-bold'>Recent Activity</p>
+            <h5 className='font-bold'>Recent Activity</h5>
             <Link href='/transactions'
             className='text-blue-600'
             >View all</Link>
