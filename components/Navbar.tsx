@@ -23,7 +23,8 @@ const Navbar = () => {
   }, [selected]);
 
   return (
-    <nav className='fixed bottom-0 z-[9999] w-full py-5 px-10 flex items-center justify-between shadow-2xl rounded-t-lg shadow-black bg-white'>
+    <div className=' mx-auto w-full max-w-screen-md z-50'>
+        <nav className='fixed bottom-0 max-w-screen-md w-full py-5 px-10 flex items-center justify-between shadow-2xl rounded-t-xl shadow-black bg-slate-50'>
     <button onClick={() => setSelected('home')}>
       <Link href='/'>
         <GrHomeRounded className={`size-5 ${selected === 'home' ? 'text-blue-700 fill-blue-200' : ''}`} />
@@ -40,6 +41,7 @@ const Navbar = () => {
       </Link>
     </button>
   </nav>
+    </div>
 );
 };
 
