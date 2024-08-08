@@ -1,10 +1,8 @@
-import MaxWidthWrapper from '@/components/MaxWidthWrapper';
 import Link from 'next/link';
 
 export default function NotFound() {
 
    return ( 
- 
     <div className='flex items-center justify-center gap-20 mx-5 dark:bg-background min-h-screen'>
       <div className='hidden lg:block'>
         <img alt='not-found' src='/404.jpeg' className='w-96 rounded-3xl'/>

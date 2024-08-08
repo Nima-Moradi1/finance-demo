@@ -124,7 +124,7 @@ export const BASE_URL = 'https://demo.arcaneageis.com'
                 redirect('/');
             } else {
                 const errorData = await response.json();
-                toast.error(`Adding failed: ${errorData.message}`);
+                console.error(`Adding failed: ${errorData.message}`);
             }
         } catch (error) {
             console.error('Error during Adding Card:', error);
@@ -148,10 +148,10 @@ export const BASE_URL = 'https://demo.arcaneageis.com'
             const data = await response.json();
             console.log(data)
           } else {
-            toast.error('Failed to fetch card');
+            console.error('Failed to fetch card');
           }
         } catch (err : any) {
-          toast.error(err.message);
+          console.error(err.message);
         } 
         // finally {
         //   setLoading(false);
@@ -178,10 +178,10 @@ type Balance = {
             const data : Balance = await response.json();
             return data
           } else {
-            toast.error('Failed to fetch balance');
+            console.error('Failed to fetch balance');
           }
         } catch (err : any) {
-          toast.error(err.message);
+          console.error(err.message);
         } 
     };
 
@@ -208,10 +208,10 @@ export type Transaction = {
         const data : Transaction[] = await response.json();
         return data
       } else {
-        toast.error('Failed to fetch transactions');
+        console.error('Failed to fetch transactions');
       }
     } catch (err : any) {
-      toast.error(err.message);
+      console.log(err)
      }
     // finally {
     //   setLoading(false);
