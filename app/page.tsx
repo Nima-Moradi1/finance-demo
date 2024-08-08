@@ -2,8 +2,6 @@
 
 import Navbar from "@/components/Navbar";
 import MaxWidthWrapper from "../components/MaxWidthWrapper";
-import { IoNotificationsOutline } from "react-icons/io5";
-import CardFetch from "@/components/CardFetch";
 import CardFetchComponent from "@/components/CardFetch";
 import Transactions from "./transactions/Transactions";
 import Link from "next/link";
@@ -11,10 +9,12 @@ import PWAModal from "@/components/PWAModal";
 import { useEffect, useState } from "react";
 import { fetchBalance } from "./__api";
 import { useQuery } from "@tanstack/react-query";
+import { useRouter } from "next/navigation";
+import { CheckUserAuth } from "@/components/CheckUserAuth";
 
 
 export default  function Home() {
-  
+  const router = useRouter()
     //states for pwa modal handling 
     const [showInstallModal,setShowInstallModal] = useState<boolean>(false)
     const [prompt,setPrompt] = useState<any>(null)
@@ -73,9 +73,12 @@ export default  function Home() {
 
   const numBalance = Number(data?.balance)
   const formattedBalance = numBalance.toLocaleString()
-  
+  // check user status before showing home page
+
+ 
   return (
-    <>
+    <> 
+    <CheckUserAuth>
     <MaxWidthWrapper>
       <div>{/* header */}
       <div className="flex items-center justify-between w-full flex-row-reverse top-0">
@@ -108,9 +111,10 @@ export default  function Home() {
       </div>
        
       <PWAModal show={showInstallModal} onClose={handleCloseModal} onInstall={handleInstallClick}/>
-    </MaxWidthWrapper>
-       
+    </MaxWidthWrapper>   
     <Navbar />
+    </CheckUserAuth>
        </>
+  
   );
 }
