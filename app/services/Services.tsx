@@ -13,7 +13,7 @@ const Services = () => {
         if(navigator.mediaDevices) {
             navigator.mediaDevices.getUserMedia({
                 video: {
-                  facingMode: 'user',
+                  facingMode: 'environment',
                   width: { min: 640 },
                   height: { min: 480 },
                 },
