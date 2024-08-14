@@ -100,12 +100,12 @@ const CardFetchComponent: React.FC = () => {
         <div className='flex flex-col items-center justify-center gap-2'>         
            <BiTransferAlt className="text-white border border-white rounded-lg p-1 size-7" />
            <p className='text-xs text-center'>transfer</p>
-
         </div>
         <div className='flex flex-col items-center justify-center gap-2'>         
-           <FaPlus className="text-white border border-white rounded-lg p-1 size-7" />
-           <p className='text-xs text-center'>Top up</p>
-
+        <Link href='/services'>         
+    <FaPlus className="text-black border-2 border-black rounded-lg p-1 size-7 ml-1" />
+    <p className='text-xs'>Top up</p>
+ </Link>
         </div>
         </div>
     </div>

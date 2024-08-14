@@ -48,7 +48,7 @@ const Services = () => {
       <div className='flex flex-col gap-4 mb-20'>
         <p className='font-bold text-center text-lg'>Choose one of the services</p>
         {/* box 1 */}
-        <div onClick={handleOpenCamera} className='bg-black flex w-full justify-between  pl-5 pt-5 overflow-hidden rounded-3xl'>
+        <div onClick={handleOpenCamera} className='bg-black flex w-full justify-between  pl-5 py-4 overflow-hidden rounded-3xl'>
             <div className='text-white'>
                 <h2 className='font-bold text-xl px-1'>Desposit money</h2>
                 <h4 className='text-xs text-neutral-400'>deposit money to your account easily</h4>
@@ -58,9 +58,9 @@ const Services = () => {
             </div>
         </div>
         {/* box 2 */}
-        <div onClick={handleOpenCamera} className='bg-purple-600 relative flex w-full justify-between  pl-5 py-5 overflow-hidden rounded-3xl'>
+        <div onClick={handleOpenCamera} className='bg-purple-600 relative flex w-full justify-between  pl-5 py-3 overflow-hidden rounded-3xl'>
             <div className='text-white'>
-                <h2 className='font-bold text-xl px-1'>Desposit money <br/> and get card</h2>
+                <h2 className='font-bold text-lg px-1'>Desposit money <br/> and get card</h2>
                 <h4 className='text-xs text-neutral-400 mr-1'>deposit money to your account easily and get card</h4>
             </div>
             <div className='w-72 overflow-hidden '>
@@ -69,7 +69,7 @@ const Services = () => {
             </div>
         </div>
         {/* box 3 */}
-        <div className='bg-red-700 relative flex w-full justify-between  pl-5 pt-6 pb-8 overflow-hidden rounded-3xl'>
+        <div className='bg-red-700 relative flex w-full justify-between  pl-5 pt-6 pb-4 overflow-hidden rounded-3xl'>
             <div className='text-white'>
                 <h2 className='font-bold text-xl px-1 '>Buy Istanbul card</h2>
                 <h4 className='text-xs text-neutral-400'>Get an Istanbul card and explore the city</h4>
