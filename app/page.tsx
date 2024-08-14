@@ -96,7 +96,7 @@ export default  function Home() {
       {isLoading ?  <div className="flex flex-col gap-3 items-center w-full justify-center mx-auto">
   <img src="/loader.svg" alt="loader" width={24} height={24} className="animate-spin" /></div>
        : error ? <><span>!</span></> 
-       : data ? <>${formattedBalance}</> 
+       : data ? <>₺{formattedBalance}</> 
        : null}
       </div></div>
     <CardFetchComponent/>
