@@ -81,7 +81,7 @@ useEffect(()=> {
                       Error : &nbsp;{error}
                     </p>
                 <Button size='lg'>
-                    <Link href='/services'>Return to Services</Link>
+                    <Link href='/'>Return Home</Link>
                 </Button>
                 </div>
             </CenterWidthWrapper>
